@@ -1,24 +1,27 @@
 const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
-const buttonReset = document.getElementsByClassName('btn__reset');
+const buttonReset = document.querySelector('.btn__reset');
 
 let missed = 0;
 
 var phrases = ['Welcome To the Black Parade', 'Before I Forget' ,
  'Back In Black', 'Quantum Flux', 'Snuff'];
 
-buttonReset.addEventListener("click", () => {
+buttonReset.addEventListener("click", (e) => {
 
     document.getElementById('overlay').style.display = 'none';
 });
 
-getRandomPhraseAsArray(arr => {
+getRandomPhraseAsArray(arr =>  {
     //function returns a phrase as an array of strings
 
     const randomNumber = Math.random(arr.length);
 
     return arr[randomNumber];
 });
+
+
+
 
 getRandomPhraseAsArray(phrases);
 
