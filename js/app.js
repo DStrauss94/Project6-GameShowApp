@@ -12,28 +12,42 @@ buttonReset.addEventListener("click", (e) => {
     document.getElementById('overlay').style.display = 'none';
 });
 
-getRandomPhraseAsArray(arr =>  {
+const getRandomPhraseAsArray = ((arr) =>  {
     //function returns a phrase as an array of strings
 
-    const randomNumber = Math.random(arr.length);
+    const randomNumber = Math.floor(Math.random() * Math.floor(arr.length));
 
-    return arr[randomNumber];
+    var randomPhrase = arr[randomNumber].split("");
+
+    return randomPhrase;
 });
 
 
+const phraseArray = getRandomPhraseAsArray(phrases);
 
 
-getRandomPhraseAsArray(phrases);
+const addPhraseToDisplay = (arr => {
+    for(let i = 0 ; i > arr.length;  i++){
+        if(arr[i] !== " "){
+            var node = document.createElement("LI");
+            var textnode = document.createTextNode(arr[i]);
+            node.appendChild(textnode);
+            phrase.appendChild(node);
+        }
+    }
+});
+
+addPhraseToDisplay(phraseArray);
 
 
-checkLetter(letter => {
-    const letters = document.querySelectorAll('.letter');
+const checkLetter = (letterButton => {
+    const letters = document.querySelectorAll('.keyRow');
     let match = null;
 
     for(let i = 0 ; i < letters.length; i++){
 
         //checks to see if letter chosen, matches with letter at that index 
-        if(letter === letters[i].textContent.toLowerCase()){
+        if(letterButton === letters[i].textContent.toLowerCase()){
             letters[i].className += 'show';
             match = letters[i].textContent;
         }
@@ -57,5 +71,8 @@ checkLetter(letter => {
 
 
  })
+
+
+ 
 
 
