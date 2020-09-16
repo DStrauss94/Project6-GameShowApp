@@ -1,6 +1,8 @@
 const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 const buttonReset = document.querySelector('.btn__reset');
+var elementUl = document.querySelector('#phrase ul');
+buttonReset.style.cursor = "pointer";
 
 let missed = 0;
 
@@ -27,29 +29,53 @@ const phraseArray = getRandomPhraseAsArray(phrases);
 
 
 const addPhraseToDisplay = (arr => {
-    for(let i = 0 ; i > arr.length;  i++){
+    var fragment = document.createDocumentFragment();
+
+     for(let i = 0 ; i < arr.length;  i++){
+        //creates li element at the beginning
+        var elementLi = document.createElement("LI");
+        //adds text content to elementLi
+        elementLi.textContent = arr[i];
+
+        //appends element li to empty Document Fragment
+        fragment.appendChild(elementLi);
+
+        //creates box for letter
         if(arr[i] !== " "){
-            var node = document.createElement("LI");
-            var textnode = document.createTextNode(arr[i]);
-            node.appendChild(textnode);
-            phrase.appendChild(node);
+            elementLi.classList.add('letter');
+        }
+        //creates tiny space between letter boxes
+        else{
+            elementLi.classList.add('space');
         }
     }
+    //appends to #phrase ul
+    elementUl.appendChild(fragment);
+
+    // return fragment;
 });
 
 addPhraseToDisplay(phraseArray);
 
 
+qwerty.addEventListener("click", (e) =>{
+    if(e.target.tagName === 'BUTTON'){
+        const button = e.target;
+        button.className = 'chosen';
+        const result = checkLetter(button);
+    }
+});
+
+
 const checkLetter = (letterButton => {
-    const letters = document.querySelectorAll('.keyRow');
+    const letters = elementUl.children;
+    console.log(letterButton);
     let match = null;
 
     for(let i = 0 ; i < letters.length; i++){
-
         //checks to see if letter chosen, matches with letter at that index 
-        if(letterButton === letters[i].textContent.toLowerCase()){
-            letters[i].className += 'show';
-            match = letters[i].textContent;
+        if(letterButton.textContent === letters[i].textContent.toLowerCase()){
+            
         }
 
     }
@@ -59,18 +85,9 @@ const checkLetter = (letterButton => {
 });
 
 
- qwerty.addEventListener("click", (e) =>{
-     if(e.target.tagName === 'BUTTON'){
-         const button = e.target;
-         button.className = 'chosen';
-         
-     }
-
-     const result = checkLetter()
-    
 
 
- })
+
 
 
  
