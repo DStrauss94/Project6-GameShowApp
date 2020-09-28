@@ -1,9 +1,10 @@
 const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 const buttonReset = document.querySelector('.btn__reset');
+const hearts = document.querySelectorAll(".tries");
+
 var elementUl = document.querySelector('#phrase ul');
 buttonReset.style.cursor = "pointer";
-const hearts = document.querySelectorAll(".tries");
 
 
 let missed = 0;
@@ -54,7 +55,6 @@ const addPhraseToDisplay = (arr => {
     //appends to #phrase ul
     elementUl.appendChild(fragment);
 
-    // return fragment;
 });
 
 addPhraseToDisplay(phraseArray);
@@ -73,12 +73,13 @@ qwerty.addEventListener("click", (e) =>{
         if (match === null ){
             hearts[missed].style.display = 'none';
             missed++;
-            
+           
         }
 
         
+        
     }
-    
+    checkWin();
 });
 
 const checkLetter = (letterButton => {
@@ -102,29 +103,42 @@ const checkLetter = (letterButton => {
 });
 
 
-const checkWin = ((check) =>  {
+const checkWin = (() =>  {
    //if letters in "show" match the number of letters in "letters"
    //then win shows
-   let lengthShow = document.querySelectorAll('.show').length;
-   let lengthLetters;
+
+   //two variables to store li elements 
+   const letterLi = document.querySelectorAll('.letter');
+   const showLi = document.querySelectorAll('.show');
+
+   //checking to see if they get stored with any info
+//    console.log(letterLi);
+//    console.log(showLi);
+
+   // getting the lengths of each
+   let lengthShow = letterLi.length;
+   let lengthLetters = showLi.length;
+
+   const overlay = document.getElementById("overlay");
+
+   if(lengthShow === lengthLetters){
+       overlay.style.display = 'flex';
+       overlay.className = 'win';
+
+       document.querySelector('h2').innerHtml = "You Win!";
+       document.querySelector('a').innerHTML = "Play Again!";
+
+    if(missed > 4){
+        overlay.style.display = 'flex';
+        overlay.className = 'lose';
+
+        document.querySelector('h2').innerHtml = "You Lose!";
+        document.querySelector('a').innerHTML = "Play Again!";
+       }
 
 
 
-  
-
-
-
-
-
-
-
-   // else, lose 
-});
-
-
-
-
-
+   }
  
-
+});
 
