@@ -119,6 +119,9 @@ const checkWin = (() =>  {
    let lengthShow = letterLi.length;
    let lengthLetters = showLi.length;
 
+   console.log(lengthShow);
+   console.log(lengthLetters);
+
    const overlay = document.getElementById("overlay");
 
    if(lengthShow === lengthLetters){
