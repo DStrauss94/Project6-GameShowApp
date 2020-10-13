@@ -91,7 +91,7 @@ const checkLetter = (letterButton => {
         
         //checks to see if letter chosen, matches with letter at that index 
         if(letterButton.textContent === letters[i].textContent.toLowerCase()){
-            letters[i].classList.add("chosen");
+            letters[i].classList.add("show");
             match = letterButton.textContent;
         }
         
@@ -113,7 +113,7 @@ const checkWin = (() =>  {
 
    //checking to see if they get stored with any info
 //    console.log(letterLi);
-//    console.log(showLi);
+   console.log(showLi);
 
    // getting the lengths of each
    let lengthShow = letterLi.length;
@@ -131,14 +131,20 @@ const checkWin = (() =>  {
        document.querySelector('h2').innerHtml = "You Win!";
        document.querySelector('a').innerHTML = "Play Again!";
 
-    if(missed > 4){
-        overlay.style.display = 'flex';
-        overlay.className = 'lose';
+    
 
-        document.querySelector('h2').innerHtml = "You Lose!";
-        document.querySelector('a').innerHTML = "Play Again!";
-       }
 
+
+   }
+   else if(missed > 4){
+    overlay.style.display = 'flex';
+    overlay.className = 'lose';
+
+    document.querySelector('h2').innerHtml = "You Lose!";
+    let reloadButton = document.querySelector('a').innerHTML = "Play Again!";
+    
+ 
+    
 
 
    }
