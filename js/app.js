@@ -74,7 +74,7 @@ qwerty.addEventListener("click", (e) =>{
             // hearts[missed].style.display = 'none';
             
             let missedHearts =  document.getElementsByTagName('img')[missed];
-            missedHearts.src = "../images/lostHeart.png";
+            missedHearts.src = "images/lostHeart.png";
 
             missed++;
            
