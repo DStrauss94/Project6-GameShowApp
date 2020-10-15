@@ -2,10 +2,8 @@ const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 const buttonReset = document.querySelector('.btn__reset');
 const hearts = document.querySelectorAll(".tries");
-
 var elementUl = document.querySelector('#phrase ul');
 buttonReset.style.cursor = "pointer";
-
 
 let missed = 0;
 
@@ -65,14 +63,10 @@ qwerty.addEventListener("click", (e) =>{
     if(e.target.tagName === 'BUTTON'){
         const button = e.target;
         button.classList.add("chosen");
-        // button.setAttribute("disabled", "chosen");, second way of disabling
         button.disabled = true;
-        // console.log(button.textContent);
-        // console.log(checkLetter(button));
         const match =  checkLetter(button);
         if (match === null ){
-            // hearts[missed].style.display = 'none';
-            
+
             let missedHearts =  document.getElementsByTagName('img')[missed];
             missedHearts.src = "images/lostHeart.png";
 
@@ -125,16 +119,10 @@ const checkWin = (() =>  {
    const letterLi = document.querySelectorAll('.letter');
    const showLi = document.querySelectorAll('.show');
 
-   //checking to see if they get stored with any info
-//    console.log(letterLi);
-   console.log(showLi);
-
+ 
    // getting the lengths of each
    let lengthShow = letterLi.length;
    let lengthLetters = showLi.length;
-
-   console.log(lengthShow);
-   console.log(lengthLetters);
 
    const overlay = document.getElementById("overlay");
 
@@ -145,11 +133,8 @@ const checkWin = (() =>  {
        document.querySelector('h2').textContent= "You Win!";
        document.querySelector('a').textContent = "Play Again!";
 
-    
+    }
 
-
-
-   }
    else if(missed > 4){
     overlay.style.display = 'flex';
     overlay.className = 'lose';
