@@ -71,7 +71,10 @@ qwerty.addEventListener("click", (e) =>{
         // console.log(checkLetter(button));
         const match =  checkLetter(button);
         if (match === null ){
-            hearts[missed].style.display = 'none';
+            // hearts[missed].style.display = 'none';
+            hearts[missed].src = "../images/lostHeart.png";
+
+
             missed++;
            
         }
@@ -81,6 +84,16 @@ qwerty.addEventListener("click", (e) =>{
     }
     checkWin();
 });
+
+
+buttonReset.addEventListener("click", (e) =>{
+    
+    if(e.target.textContent === "You win!" ||  e.target.textContent === "Play Again!"){
+        window.location.reload();
+    }
+    
+});
+
 
 const checkLetter = (letterButton => {
     const letters = elementUl.children;
