@@ -143,7 +143,7 @@ const checkWin = (() =>  {
        overlay.style.display = 'flex';
        overlay.className = 'win';
        document.querySelector('h2').textContent= "You Win!";
-       document.querySelector('a').innerHTML = "Play Again!";
+       document.querySelector('a').textContent = "Play Again!";
 
     
 
@@ -155,6 +155,8 @@ const checkWin = (() =>  {
     overlay.className = 'lose';
 
     document.querySelector('h2').textContent= "You Lose";
+    document.querySelector('a').textContent = "Play Again!";
+
     
  }
  
