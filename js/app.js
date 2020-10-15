@@ -9,7 +9,7 @@ buttonReset.style.cursor = "pointer";
 
 let missed = 0;
 
-var phrases = ['Welcome To the Black Parade', 'Before I Forget' ,
+var phrases = ['Hey Jude', 'Before I Forget' ,
  'Back In Black', 'Quantum Flux', 'Snuff'];
 
 buttonReset.addEventListener("click", (e) => {
@@ -72,8 +72,9 @@ qwerty.addEventListener("click", (e) =>{
         const match =  checkLetter(button);
         if (match === null ){
             // hearts[missed].style.display = 'none';
-            hearts[missed].src = "../images/lostHeart.png";
-
+            
+            let missedHearts =  document.getElementsByTagName('img')[missed];
+            missedHearts.src = "../images/lostHeart.png";
 
             missed++;
            
@@ -88,7 +89,7 @@ qwerty.addEventListener("click", (e) =>{
 
 buttonReset.addEventListener("click", (e) =>{
     
-    if(e.target.textContent === "You win!" ||  e.target.textContent === "Play Again!"){
+    if(e.target.textContent === "Play Again!"){
         window.location.reload();
     }
     
@@ -138,10 +139,10 @@ const checkWin = (() =>  {
    const overlay = document.getElementById("overlay");
 
    if(lengthShow === lengthLetters){
+    
        overlay.style.display = 'flex';
        overlay.className = 'win';
-
-       document.querySelector('h2').innerHtml = "You Win!";
+       document.querySelector('h2').textContent= "You Win!";
        document.querySelector('a').innerHTML = "Play Again!";
 
     
@@ -153,14 +154,9 @@ const checkWin = (() =>  {
     overlay.style.display = 'flex';
     overlay.className = 'lose';
 
-    document.querySelector('h2').innerHtml = "You Lose!";
-    let reloadButton = document.querySelector('a').innerHTML = "Play Again!";
+    document.querySelector('h2').textContent= "You Lose";
     
- 
-    
-
-
-   }
+ }
  
 });
 
